@@ -1,3 +1,16 @@
 #第二周作业体交
 #1.实现灰度化和二值化 2.实现最邻近插值 3.证明双线性插值中心重合 4.实现双线性插值
-#1. 
+1 
+from PIL import Image, ImageOps
+
+# 打开图像
+img = Image.open('D:\\BaiduNetdiskDownload\\CV\\第二周\\代码\\lenna.png')
+
+# 将图像转换为灰度图像
+gray = img.convert('L')
+
+# 二值化图像
+binary = gray.point(lambda x: 0 if x < 128 else 255, '1')
+
+# 显示二值化图像
+binary.show()
