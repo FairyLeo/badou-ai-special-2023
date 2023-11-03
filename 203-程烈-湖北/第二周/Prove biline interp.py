@@ -1,13 +1,29 @@
 def calculate_average(points):
+    # 初始化x坐标和y坐标的总和为0
     x_sum = 0
     y_sum = 0
+
+    # 遍历所有点
     for point in points:
+        # 将当前点的x坐标加到x_sum上
         x_sum += point[0]
+        # 将当前点的y坐标加到y_sum上
         y_sum += point[1]
-    return (x_sum / len(points), y_sum / len(points))
+
+    # 计算平均点的x坐标和y坐标
+    avg_x = x_sum / len(points)
+    avg_y = y_sum / len(points)
+
+    # 返回平均点的坐标
+    return (avg_x, avg_y)
+
 
 def is_same_point(point1, point2):
-    return point1[0] == point2[0] and point1[1] == point2[1]
+    # 判断两个点的x坐标和y坐标是否都相等
+    if point1[0] == point2[0] and point1[1] == point2[1]:
+        return True
+    else:
+        return False
 
 A = (10, 20)
 B = (34, 47)
