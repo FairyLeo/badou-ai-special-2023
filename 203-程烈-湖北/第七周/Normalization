@@ -1,0 +1,44 @@
+#normalization
+import numpy as np
+
+def min_max_normalization(data):
+    min_value = min(data)
+    max_value = max(data)
+    normalized_data = [(x - min_value) / (max_value - min_value) for x in data]
+    return normalized_data
+
+def max_normalization(data):
+    max_value = max(data)
+    normalized_data = [x / max_value for x in data]
+    return normalized_data
+
+#将数据减去均值，然后除以标准差。这种方法适用于数据分布较为均匀的情况
+def z_score_normalization(data):
+    mean = np.mean(data)
+    std = np.std(data)
+    normalized_data = [(x - mean) / std for x in data]
+    return normalized_data
+
+#分位数归一化（Quantile Normalization）：将数据分为若干个区间，然后对每个区间的数据进行归一化处理。
+# 这种方法适用于数据分布较为不均匀的情况。
+def quantile_normalization(data, n_quantiles=100):
+    quantiles = np.linspace(0, 1, n_quantiles + 1)
+    quantile_values = np.quantile(data, quantiles)
+    normalized_data = [np.interp(x, quantile_values[:-1], quantiles[:-1]) for x in data]
+    return normalized_data
+
+#这种方法适用于数据分布较为均匀的情况
+def log_normalization(data):
+    log_data = np.log(data)
+    min_value = min(log_data)
+    max_value = max(log_data)
+    normalized_data = [(x - min_value) / (max_value - min_value) for x in log_data]
+    return normalized_data
+
+#这种方法适用于数据分布较为不均匀的情况。
+def exp_normalization(data):
+    exp_data = np.exp(data)
+    min_value = min(exp_data)
+    max_value = max(exp_data)
+    normalized_data = [(x - min_value) / (max_value - min_value) for x in exp_data]
+    return normalized_data
